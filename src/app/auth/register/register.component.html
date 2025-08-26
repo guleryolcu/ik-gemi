@@ -1,0 +1,41 @@
+<div class="register-bg">
+  <div class="register-card" style="position: relative;">
+
+    <div *ngIf="isLoading" class="loading-overlay">
+      <div class="loading-spinner"></div>
+    </div>
+    <div class="register-logo">
+      <img src="https://barkod.narpos.com.tr/assets/images/yty-nar.svg" alt="NarPOS Logo" width="256" height="64" />
+    </div>
+
+    <h2 class="register-title">Hesap Oluştur</h2>
+    <p class="register-desc">Yeni bir hesap oluşturarak aramıza katılın.</p>
+
+    <form class="register-form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+      
+      <label for="Username">Ad Soyad</label>
+      <input id="Username" name="Username" type="text" placeholder="Adınızı ve soyadınızı girin" class="register-input" [(ngModel)]="registerData.username" required />
+
+      <label for="email">E-Posta</label>
+      <input id="email" name="email" type="email" placeholder="E-posta adresinizi girin" class="register-input" [(ngModel)]="registerData.email" required email />
+
+      <label for="Password">Şifre</label>
+      <input id="Password" name="Password" type="password" placeholder="Yeni bir şifre belirleyin" class="register-input" [(ngModel)]="registerData.password" required minlength="6" />
+
+      <label for="Password2">Şifre Tekrar</label>
+      <input id="Password2" name="Password2" type="password" placeholder="Şifrenizi tekrar girin" class="register-input" [(ngModel)]="passwordRepeat" required />
+
+      <div *ngIf="errorMessage" class="input-error">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="register-button" [disabled]="registerForm.invalid || isLoading">Kayıt Ol</button>
+    </form>
+    
+    <div class="login-link">
+      <span>Zaten bir hesabınız var mı?</span>
+      <a routerLink="/login">Giriş Yap</a>
+    </div>
+
+  </div>
+</div>

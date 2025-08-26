@@ -1,13 +1,74 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr">
 <head>
+  <!-- Karakter setini UTF-8 olarak belirler, Türkçe karakterlerin doğru görüntülenmesini sağlar. -->
   <meta charset="utf-8">
-  <title>IkGemi</title>
+  
+  <!-- Tarayıcı sekmesinde görünecek olan başlık. -->
+  <title>İnsan Kaynakları Yönetim Paneli</title>
+  
+  <!-- Uygulamanın ana URL'sini belirtir. -->
   <base href="/">
+  
+  <!-- Responsive tasarım için gereklidir, sayfanın mobil cihazlarda doğru ölçeklenmesini sağlar. -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Tarayıcı sekmesinde görünecek olan ikon (favicon). -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- === UYGULAMA YÜKLENİRKEN GÖSTERİLECEK ANİMASYON İÇİN STİLLER === -->
+  <style>
+    /* Sayfa ve animasyon kapsayıcısı için temel stiller */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: sans-serif;
+    }
+    .app-loading {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    /* Dönen animasyon (spinner) stilleri */
+    .spinner {
+      height: 50px;
+      width: 50px;
+      border: 4px solid #f3f3f3; /* Halka rengi */
+      border-top-color: #ff4b00; /* Dönen kısmın rengi */
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    /* "Yükleniyor..." metni için stil */
+    .loading-text {
+      margin-top: 16px;
+      font-size: 1rem;
+      color: #555;
+    }
+    /* CSS animasyon tanımı */
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-  <app-root></app-root>
+  <!-- 
+    Bu etiket, Angular uygulamanızın ana bileşeninin (AppComponent) yükleneceği yerdir.
+    Angular çalışmaya başladığında, bu etiketin içindeki her şeyi kendi içeriğiyle değiştirir.
+    Bu yüzden içine bir yükleme animasyonu koymak, uygulama başlayana kadar kullanıcıya bir geri bildirim vermenin en iyi yoludur.
+  -->
+  <app-root>
+    <div class="app-loading">
+      <div class="spinner"></div>
+      <p class="loading-text">Uygulama Yükleniyor...</p>
+    </div>
+  </app-root>
 </body>
 </html>

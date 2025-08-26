@@ -1,1 +1,169 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* === CSS DEĞİŞKENLERİ (Kolay Yönetim İçin) === */
+:root {
+  --top-nav-height: 70px; /* Üst panelin yüksekliği */
+  --side-nav-width: 250px; /* Sol menünün genişliği */
+  --side-nav-collapsed-width: 80px; /* Sol menünün daraltılmış genişliği */
+  --primary-color: #007bff;
+  --text-color: #333;
+  --background-color: #f7f8fc;
+  --white-color: #ffffff;
+}
+
+/* === TEMEL SAYFA STİLLERİ === */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--background-color);
+}
+
+/* === ANA KAPSAYICI === */
+.dashboard-container {
+  /* Daraltma animasyonlarının yumuşak olması için */
+  transition: all 0.3s ease;
+}
+
+/* === ÜST PANEL (TOP-NAV) === */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--top-nav-height);
+  padding: 0 24px;
+  background-color: var(--white-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+  /* Sabit konumlandırma */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1100; /* Sol menünün üzerinde kalmalı */
+}
+
+.top-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hamburger-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.logo {
+  height: 30px;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column; /* Kullanıcı adı ve butonu alt alta sıralar */
+  align-items: flex-end; /* Öğeleri sağa yaslar */
+}
+
+.username {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: #ff4d4f;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px 0 0 0; /* Üst boşluk */
+}
+
+/* === SOL DİKEY MENÜ (SIDE-NAV) === */
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--side-nav-width);
+  height: 100vh;
+  background-color: var(--white-color);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  
+  /* Üst panelin altına içerik ittirmek için */
+  padding-top: calc(var(--top-nav-height) + 20px);
+  
+  z-index: 1000;
+  overflow-x: hidden; /* Daraltıldığında metinlerin taşmasını engeller */
+  transition: width 0.3s ease; /* Genişlik değişimine animasyon ekler */
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  white-space: nowrap; /* Metinlerin alt satıra kaymasını engeller */
+  gap: 16px;
+  transition: background-color 0.2s;
+}
+
+.nav-link i {
+  font-size: 18px;
+  width: 20px; /* İkonların hizalı durması için */
+  text-align: center;
+}
+
+.nav-link:hover {
+  background-color: #f0f0f0;
+}
+
+.nav-link.active {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* === ANA İÇERİK ALANI (MAIN-CONTENT) === */
+.main-content {
+  /* Üst ve Sol panel kadar boşluk bırakır */
+  margin-top: var(--top-nav-height);
+  margin-left: var(--side-nav-width);
+  padding: 24px;
+  transition: margin-left 0.3s ease; /* Boşluk değişimine animasyon ekler */
+}
+
+.content-card {
+  background-color: var(--white-color);
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* === MENÜ DARALTILDIĞINDA UYGULANACAK STİLLER === */
+.sidebar-collapsed .side-nav {
+  width: var(--side-nav-collapsed-width);
+}
+
+.sidebar-collapsed .main-content {
+  margin-left: var(--side-nav-collapsed-width);
+}
+
+.sidebar-collapsed .side-nav .link-text {
+  display: none; /* Dar menüde link yazılarını gizle */
+}
+
+.sidebar-collapsed .nav-link {
+  justify-content: center; /* Sadece ikonu ortala */
+}

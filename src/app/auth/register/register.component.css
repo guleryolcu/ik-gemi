@@ -1,0 +1,204 @@
+/* Sayfa arka planı ve ortalama */
+.register-bg {
+    min-height: 100vh;
+    background: #f3f3f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Kart yapısı */
+.register-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(60,60,60,0.08);
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 400px;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Logo */
+.register-logo {
+    margin-bottom: 16px;
+}
+
+/* Başlık */
+.register-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #FF4B00;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+/* Açıklama */
+.register-desc {
+    color: #444;
+    font-size: 1rem;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* Form */
+.register-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+/* Label */
+.register-form label {
+    font-weight: 500;
+    color: #222;
+    margin-top: 8px;
+}
+
+/* Input */
+.register-input {
+    padding: 12px 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 7px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+.register-input:focus {
+    border: 1.5px solid #FF4B00;
+    box-shadow: 0 0 0 3px rgba(255, 75, 0, 0.1);
+}
+.register-input.ng-invalid.ng-touched {
+    border-color: #ff4444;
+}
+
+/* Buton */
+.register-button {
+    margin-top: 12px;
+    padding: 13px 0;
+    background: linear-gradient(90deg, #FF9900 0%, #FF4B00 100%);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255,75,0,0.08);
+    transition: background 0.2s, box-shadow 0.2s;
+    width: 100%;
+}
+.register-button:hover:not(:disabled) {
+    background: linear-gradient(90deg, #FF4B00 0%, #FF9900 100%);
+    box-shadow: 0 4px 16px rgba(255,75,0,0.13);
+}
+.register-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Hata mesajları */
+.input-error {
+    color: #ff4444;
+    font-size: 0.875rem;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    background-color: #fff5f5;
+    border: 1px solid #fed7d7;
+    border-radius: 6px;
+    border-left: 4px solid #ff4444;
+}
+
+/* Giriş yap linki */
+.login-link {
+    margin-top: 8px;
+    color: #444;
+    font-size: 1rem;
+    text-align: center;
+}
+.login-link a {
+    color: #FF4B00;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 4px;
+    transition: text-decoration 0.2s;
+}
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  border-radius: 12px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #FF4B00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mobil uyum */
+@media (max-width: 768px) {
+    .register-card {
+        min-width: unset;
+        width: 95vw;
+        padding: 32px 24px 24px 24px;
+        margin: 16px;
+    }
+    
+    .register-bg {
+        padding: 16px;
+    }
+    
+    .register-logo img {
+        width: 200px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-card {
+        padding: 24px 16px 20px 16px;
+    }
+    
+    .register-logo img {
+        width: 180px;
+        height: 45px;
+    }
+    
+    .register-input {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .register-button {
+        padding: 12px 0;
+        font-size: 1rem;
+    }
+}

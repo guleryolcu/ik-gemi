@@ -1,0 +1,44 @@
+<div class="dashboard-layout">
+
+  <input type="checkbox" id="menu-toggle" />
+  
+  <div class="overlay"></div>
+
+  <header class="top-nav">
+    <div class="logo-container">
+      <img src="https://barkod.narpos.com.tr/assets/images/yty-nar.svg" alt="Logo" class="logo">
+    </div>
+
+    <div class="hamburger-menu">
+      <label for="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+
+    <div class="user-actions">
+      </div>
+  </header>
+
+  <nav class="side-nav">
+    <div class="nav-links">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link" [routerLinkActiveOptions]="{ exact: true }">Ana Panel</a>
+      <a routerLink="/dashboard/personnel" routerLinkActive="active" class="nav-link">Personel Yönetimi</a>
+      <a routerLink="/dashboard/permission" routerLinkActive="active" class="nav-link">İzin ve Çalışma</a>
+      <a routerLink="/dashboard/cost" routerLinkActive="active" class="nav-link">Masraf Formu</a>
+      <a routerLink="/dashboard/candidate" routerLinkActive="active" class="nav-link">Aday Yönetimi</a>
+      <a routerLink="/dashboard/reports" routerLinkActive="active" class="nav-link">Analiz ve Rapor</a>
+      <a routerLink="/dashboard/settings" routerLinkActive="active" class="nav-link">Ayarlar</a>
+    </div>
+
+    <div class="user-actions">
+      <button (click)="logout()" class="logout-button">Çıkış Yap</button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    
+    <router-outlet></router-outlet>
+    </main>
+</div>

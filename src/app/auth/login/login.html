@@ -1,0 +1,49 @@
+<div class="login-bg">
+  <div class="login-card" style="position: relative;">
+
+    <!-- Yükleniyor animasyonu -->
+    <div *ngIf="isLoading" class="loading-overlay">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Logo -->
+    <div class="login-logo">
+      <img src="https://barkod.narpos.com.tr/assets/images/yty-nar.svg" alt="NarPOS Logo" width="256" height="64" />
+    </div>
+
+    <!-- Başlık -->
+    <h2 class="login-title">Giriş Yap</h2>
+    <p class="login-desc">Hesabınıza giriş yaparak devam edin.</p>
+
+    <!-- Form -->
+    <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+      
+      <!-- E-posta -->
+      <label for="Email">E-Posta</label>
+      <input id="Email" name="Email" type="email" placeholder="E-posta adresinizi girin" class="login-input"
+             [(ngModel)]="loginData.Email" required email />
+
+      <!-- Şifre -->
+      <label for="Password">Şifre</label>
+      <input id="Password" name="Password" type="password" placeholder="Şifrenizi girin" class="login-input"
+             [(ngModel)]="loginData.Password" required minlength="6" />
+
+      <!-- Hata mesajı -->
+      <div *ngIf="errorMessage" class="input-error">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Buton -->
+      <button type="submit" class="login-button" [disabled]="loginForm.invalid || isLoading">
+        Giriş Yap
+      </button>
+    </form>
+    
+    <!-- Kayıt linki -->
+    <div class="register-link">
+      <span>Hesabınız yok mu?</span>
+      <a routerLink="/register">Kayıt Ol</a>
+    </div>
+
+  </div>
+</div>
