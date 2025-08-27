@@ -1,1 +1,29 @@
-<p>permission works!</p>
+<div class="container">
+  <h2>Personel İzin ve Çalışma Durumu</h2>
+  <div class="table-wrapper">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>İsim</th>
+          <th>Toplam İzin</th>
+          <th>Kullanılan İzin</th>
+          <th>Kalan İzin</th>
+          <th>Çalışma Durumu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of personnels">
+          <td>{{ p.firstName }} {{ p.lastName }}</td>
+          <td>{{ p.totalLeave }}</td>
+          <td>{{ p.usedLeave }}</td>
+          <td>{{ getRemainingLeave(p) }}</td>
+          <td [ngClass]="{
+                'working': p.workingStatus==='Çalışıyor',
+                'on-leave': p.workingStatus==='İzinli',
+                'remote': p.workingStatus==='Uzaktan'
+              }">{{ p.workingStatus }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

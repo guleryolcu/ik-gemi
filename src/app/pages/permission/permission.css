@@ -1,0 +1,42 @@
+.container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 100%;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+.table-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center; 
+}
+
+.table {
+  width: 100%;
+  max-width: 1200px;      
+  border-collapse: collapse;
+  table-layout: fixed;     
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+.working {
+  color: green;
+  font-weight: b
+}
+
+@media (max-width: 768px) {
+  .table {
+    font-size: 14px;
+  }
+}
