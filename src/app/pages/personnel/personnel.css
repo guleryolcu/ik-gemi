@@ -7,26 +7,121 @@
   transition: margin-left 0.3s ease-in-out;
 }
 
-/* Kart Kapsayıcısı */
+/* Genel Container */
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 20px;
   justify-content: center;
+  padding: 20px;
+  background-color: #f7f7f7;
 }
 
-/* İçerik Kartları (Tekrarlar Temizlendi ve Birleştirildi) */
+/* Personel Kartları */
 .content-card {
-  background-color: #ffffff;
-  padding: 24px;
+  background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  box-sizing: border-box; 
-  width: 570px;
-  max-width: 100%;
-  min-height: 400px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 240px;
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
+.content-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Personel Fotoğrafı */
+.personnel-image img {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Personel Bilgileri */
+.personnel-info {
+  margin: 10px 0;
+}
+
+.personnel-name {
+  font-size: 18px;
+  margin: 5px 0;
+  color: #333;
+}
+
+.personnel-title {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Buton */
+.btn {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Detay Kutusu */
+.person-detail {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  width: 320px;
+  text-align: left;
+  z-index: 1001;
+}
+
+.person-detail h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.person-detail p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.close-btn {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin: 15px auto 0;
+  transition: background-color 0.2s;
+}
+
+.close-btn:hover {
+  background-color: #a71d2a;
+}
+
+/* Arka plan karartma */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+}
 
 
 /* === YENİLENMİŞ RESPONSIVE TASARIM === */

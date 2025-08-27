@@ -1,21 +1,27 @@
 <div class="card-container">
-    <div class="content-card">
-        <img src="https://cdn.pixabay.com/photo/2013/02/01/18/14/url-77169_1280.jpg" alt="NarPOS Logo" width="120" height="64" />
+  <!-- Personel Kartları -->
+  <div class="content-card" *ngFor="let person of personnelList">
+    <div class="personnel-image">
+      <img [src]="person.photoUrl" alt="Personnel Photo" width="240" height="128" />
+    </div>
+    <div class="personnel-info">
+      <h3 class="personnel-name">{{ person.name }}</h3>
+      <p class="personnel-title">{{ person.title }}</p>
+    </div>
+    <div>
+      <button class="btn" (click)="openDetails(person)">Daha Fazla</button>
+    </div>
+  </div>
+</div>
 
-        <h2>Güler Yolcu </h2>
-    </div>
-    <div class="content-card">
-        <img src="https://1drv.ms/i/c/7cfe69f1eea984bd/EaNpvIsGSWlCsdw15HDwsh4BLHc4N0C11lATEebjD0hGBw?e=bRkaFT" alt="NarPOS Logo" width="120" height="64" />
-
-        <h2>Güler Yolcu </h2>
-    </div>
-    <div class="content-card">
-        <img src="https://cdn.pixabay.com/photo/2013/02/01/18/14/url-77169_1280.jpg" alt="NarPOS Logo" width="120" height="64" />
-        
-    </div>
-    <div class="content-card">
-        <img src="https://cdn.pixabay.com/photo/2013/02/01/18/14/url-77169_1280.jpg" alt="NarPOS Logo" width="120" height="64" />
-        <p> </p>
-        
-    </div>
+<!-- Arkaplan ve Detay Kutusu -->
+<div *ngIf="isCardVisible">
+  <div class="modal-backdrop" (click)="closeDetails()"></div>
+  <div class="card person-detail">
+    <h2>👤 Personel Bilgileri</h2>
+    <p><strong>Ad Soyad:</strong> {{ selectedPersonnel?.name }}</p>
+    <p><strong>Pozisyon:</strong> {{ selectedPersonnel?.title }}</p>
+    <p><strong>Email:</strong> {{ selectedPersonnel?.email }}</p>
+    <button class="close-btn" (click)="closeDetails()">Kapat</button>
+  </div>
 </div>

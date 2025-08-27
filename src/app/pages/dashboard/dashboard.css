@@ -256,4 +256,14 @@
   .logo-container {
     padding-left: 50px;
   }
+  
+  #menu-toggle:checked + .overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Side-nav açılması */
+#menu-toggle:checked ~ .side-nav {
+  transform: translateX(0);
+}
 }

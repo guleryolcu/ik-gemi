@@ -1,5 +1,5 @@
 // src/app/pages/dashboard/dashboard.component.ts
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -23,4 +23,26 @@ export class DashboardComponent {
     console.log("Çıkış yapıldı!");
     this.authService.logout();
   }
+  menuOpen = false;
+  
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+    closeMenuOnOverlayClick() {
+    const menuToggle = document.getElementById('menu-toggle') as HTMLInputElement;
+    if (menuToggle) menuToggle.checked = false;
+  }
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const sideNav = document.querySelector('.side-nav');
+    const hamburger = document.querySelector('.hamburger-menu');
+
+    // Menü açıksa ve tıklama menü veya hamburger dışında ise menüyü kapat
+    if (this.menuOpen && sideNav && hamburger &&
+        !sideNav.contains(target) && !hamburger.contains(target)) {
+      this.menuOpen = false;
+    }
+  }
+
 }
