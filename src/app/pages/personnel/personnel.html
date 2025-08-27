@@ -2,11 +2,11 @@
   <!-- Personel Kartları -->
   <div class="content-card" *ngFor="let person of personnelList">
     <div class="personnel-image">
-      <img [src]="person.photoUrl" alt="Personnel Photo" width="240" height="128" />
+      <img [src]="person.photoUrl" alt="Personnel Photo" />
     </div>
     <div class="personnel-info">
-      <h3 class="personnel-name">{{ person.name }}</h3>
-      <p class="personnel-title">{{ person.title }}</p>
+      <h3 class="personnel-name">{{ person.firstName }} {{ person.lastName }}</h3>
+      <p class="personnel-title">{{ person.position }}</p>
     </div>
     <div>
       <button class="btn" (click)="openDetails(person)">Daha Fazla</button>
@@ -14,14 +14,43 @@
   </div>
 </div>
 
+<!-- Ekleme Formu -->
+<button class="btn" (click)="toggleAddForm()">Yeni Personel Ekle</button>
+<div *ngIf="showAddForm" class="person-detail">
+  <h2>Yeni Personel</h2>
+  <form (ngSubmit)="addPersonnel()">
+    <label>Ad:</label>
+    <input [(ngModel)]="newPersonnel.firstName" name="firstName" required />
+    <label>Soyad:</label>
+    <input [(ngModel)]="newPersonnel.lastName" name="lastName" required />
+    <label>Email:</label>
+    <input [(ngModel)]="newPersonnel.email" name="email" />
+    <label>Pozisyon:</label>
+    <input [(ngModel)]="newPersonnel.position" name="position" />
+    <label>Bölüm:</label>
+    <input [(ngModel)]="newPersonnel.department" name="department" />
+    <label>Başlangıç Tarihi:</label>
+    <input [(ngModel)]="newPersonnel.startDate" name="startDate" type="date"/>
+    <label>Toplam İzin:</label>
+    <input [(ngModel)]="newPersonnel.totalLeave" name="totalLeave" type="number"/>
+    <label>Kullanılan İzin:</label>
+    <input [(ngModel)]="newPersonnel.usedLeave" name="usedLeave" type="number"/>
+    <label>Çalışma Durumu:</label>
+    <input [(ngModel)]="newPersonnel.workingStatus" name="workingStatus"/>
+    <button class="btn" type="submit">Ekle</button>
+    <button class="close-btn" type="button" (click)="toggleAddForm()">Kapat</button>
+  </form>
+</div>
+
 <!-- Arkaplan ve Detay Kutusu -->
 <div *ngIf="isCardVisible">
   <div class="modal-backdrop" (click)="closeDetails()"></div>
   <div class="card person-detail">
     <h2>👤 Personel Bilgileri</h2>
-    <p><strong>Ad Soyad:</strong> {{ selectedPersonnel?.name }}</p>
-    <p><strong>Pozisyon:</strong> {{ selectedPersonnel?.title }}</p>
+    <p><strong>Ad Soyad:</strong> {{ selectedPersonnel?.firstName }} {{ selectedPersonnel?.lastName }}</p>
+    <p><strong>Pozisyon:</strong> {{ selectedPersonnel?.position }}</p>
     <p><strong>Email:</strong> {{ selectedPersonnel?.email }}</p>
+    <button class="btn" (click)="deletePersonnel(selectedPersonnel!.id)">Sil</button>
     <button class="close-btn" (click)="closeDetails()">Kapat</button>
   </div>
 </div>

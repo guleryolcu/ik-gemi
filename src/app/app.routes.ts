@@ -7,7 +7,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { Register } from './auth/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DashboardHome } from './pages/dashboard-home/dashboard-home'; // Düzeltildi
-import { Personnel } from './pages/personnel/personnel.component';
+import { PersonnelComponent } from './pages/personnel/personnel.component';
 import { Permission } from './pages/permission/permission.component';
 import { Cost } from './pages/cost/cost.component';
 import { Candidate } from './pages/candidate/candidate.component';
@@ -22,6 +22,9 @@ export const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
+
+  { path: 'personnel', component: PersonnelComponent },
+
   { 
     path: 'register',
     component: Register // Düzeltildi
@@ -38,7 +41,7 @@ export const routes: Routes = [
       { path: '', component: DashboardHome },
 
       // Diğer alt rotalar
-      { path: 'personnel', component: Personnel },   // Düzeltildi
+      { path: 'personnel', component: PersonnelComponent },   // Düzeltildi
       { path: 'permission', component: Permission }, // Düzeltildi
       { path: 'cost', component: Cost },             // Düzeltildi
       { path: 'candidate', component: Candidate },   // Düzeltildi

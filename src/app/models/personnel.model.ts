@@ -10,4 +10,5 @@ export interface Personnel {
     totalLeave: number;
     usedLeave: number;
     workingStatus: 'Çalışıyor' | 'İzinli' | 'Uzaktan';
+    photoUrl?: string;
 }

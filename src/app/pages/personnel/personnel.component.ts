@@ -1,53 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-interface PersonnelItem {
-  name: string;
-  title: string;
-  email: string;
-  photoUrl: string;
-}
+import { FormsModule } from '@angular/forms'; // <-- ngModel için gerekli
+import { PersonnelService } from '../../services/personnel.service';
+import { Personnel } from '../../models/personnel.model';
 
 @Component({
   selector: 'app-personnel',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule], // <-- buraya ekledik
   templateUrl: './personnel.html',
   styleUrls: ['./personnel.css']
 })
-export class Personnel {
+export class PersonnelComponent implements OnInit {
 
-  isCardVisible = false; // Detay kutusu görünür mü?
-  selectedPersonnel: PersonnelItem | null = null;
+  personnelList: Personnel[] = [];
+  isCardVisible = false;
+  selectedPersonnel: Personnel | null = null;
 
-  personnelList: PersonnelItem[] = [
-    {
-      name: 'Büşra Güneş',
-      title: 'İnsan Kaynakları',
-      email: 'busra.gunes@example.com',
-      photoUrl: 'https://cdn.pixabay.com/photo/2013/02/01/18/14/url-77169_1280.jpg'
-    },
-    {
-      name: 'Güler Yolcu',
-      title: 'Stajyer',
-      email: 'guler.yolcu@example.com',
-      photoUrl: 'https://cdn.pixabay.com/photo/2013/02/01/18/14/url-77169_1280.jpg'
-    },
-    {
-      name: 'Ahmet Demir',
-      title: 'Sistem Analisti',
-      email: 'ahmet.demir@example.com',
-      photoUrl: 'https://cdn.pixabay.com/photo/2013/02/01/18/14/url-77169_1280.jpg'
-    },
-    {
-      name: 'Ayşe Kaya',
-      title: 'UI/UX Tasarımcı',
-      email: 'ayse.kaya@example.com',
-      photoUrl: 'https://cdn.pixabay.com/photo/2013/02/01/18/14/url-77169_1280.jpg'
-    }
-  ];
+  // Ekleme Formu
+  showAddForm = false;
+  newPersonnel: Personnel = {
+    id: 0,
+    firstName: '',
+    lastName: '',
+    email: '',
+    position: '',
+    department: '',
+    startDate: '',
+    totalLeave: 0,
+    usedLeave: 0,
+    workingStatus: 'Çalışıyor', // varsayılan
+    photoUrl: 'https://cdn.pixabay.com/photo/2013/02/01/18/14/url-77169_1280.jpg'
+  };
 
-  openDetails(person: PersonnelItem) {
+  constructor(private personnelService: PersonnelService) {}
+
+  ngOnInit() {
+    this.loadPersonnel();
+  }
+
+  loadPersonnel() {
+    this.personnelService.getPersonnelList().subscribe(data => {
+      this.personnelList = data;
+    });
+  }
+
+  openDetails(person: Personnel) {
     this.selectedPersonnel = person;
     this.isCardVisible = true;
   }
@@ -55,5 +53,39 @@ export class Personnel {
   closeDetails() {
     this.isCardVisible = false;
     this.selectedPersonnel = null;
+  }
+
+  toggleAddForm() {
+    this.showAddForm = !this.showAddForm;
+  }
+
+  addPersonnel() {
+    if (!this.newPersonnel.firstName || !this.newPersonnel.lastName) return;
+    this.personnelService.addPersonnel({ ...this.newPersonnel });
+    this.loadPersonnel();
+    this.showAddForm = false;
+    this.resetForm();
+  }
+
+  deletePersonnel(id: number) {
+    this.personnelService.deletePersonnel(id);
+    this.loadPersonnel();
+    this.closeDetails();
+  }
+
+  resetForm() {
+    this.newPersonnel = {
+      id: 0,
+      firstName: '',
+      lastName: '',
+      email: '',
+      position: '',
+      department: '',
+      startDate: '',
+      totalLeave: 0,
+      usedLeave: 0,
+      workingStatus: 'Çalışıyor', // default
+      photoUrl: 'https://cdn.pixabay.com/photo/2013/02/01/18/14/url-77169_1280.jpg'
+    };
   }
 }
