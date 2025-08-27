@@ -15,7 +15,7 @@
 </div>
 
 <!-- Ekleme Formu -->
-<button class="btn" (click)="toggleAddForm()">Yeni Personel Ekle</button>
+<button class="bton" (click)="toggleAddForm()">Yeni Personel Ekle</button>
 <div *ngIf="showAddForm" class="person-detail">
   <h2>Yeni Personel</h2>
   <form (ngSubmit)="addPersonnel()">
@@ -37,8 +37,10 @@
     <input [(ngModel)]="newPersonnel.usedLeave" name="usedLeave" type="number"/>
     <label>Çalışma Durumu:</label>
     <input [(ngModel)]="newPersonnel.workingStatus" name="workingStatus"/>
-    <button class="btn" type="submit">Ekle</button>
-    <button class="close-btn" type="button" (click)="toggleAddForm()">Kapat</button>
+    <div class="butons">
+    <button class="persekle" type="submit">Ekle</button>
+    <button class="kutukapat" type="button" (click)="toggleAddForm()">Kapat</button>
+    </div>
   </form>
 </div>
 
